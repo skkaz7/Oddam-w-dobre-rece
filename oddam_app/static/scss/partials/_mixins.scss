@@ -1,0 +1,52 @@
+@mixin openSans($weight: 400, $style: normal) {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: $weight;
+  font-style: $style;
+}
+
+@mixin merri($weight: 400, $style: normal) {
+  font-family: 'Merriweather', serif;
+  font-weight: $weight;
+  font-style: $style;
+}
+
+
+@mixin transition($type: all, $time: $transition-time, $efect: ease-in-out) {
+  transition: $type $time $efect;
+}  
+
+
+@mixin headerDecoration(){
+  &:after {
+    content: "";
+    display: block;
+    width: 256px;
+    height: 40px;
+    background-image: url(../images/decoration.svg);
+    background-size: contain;
+    margin-top: 25px;
+    margin-left: calc(50% - 128px);
+  }
+}
+
+@mixin container($width, $margin: 0 auto, $padding: 0 30px){
+  max-width: $width;
+  width: 100%;
+  padding: $padding;
+  margin: $margin;
+}
+
+
+// ***** RWD *****
+@mixin large() {
+  @media screen and (min-width: 1230px){
+    @content;
+  }
+}
+
+
+@mixin medium {
+  @media (min-width: 990px) and (max-width: 1230px) {
+    @content;
+  }
+}

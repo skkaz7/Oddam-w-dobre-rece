@@ -1,0 +1,130 @@
+header {
+  &.header--main-page {
+    background-image: url(../images/header-bg.jpg);
+    background-position: bottom left -30vh;
+    background-repeat: no-repeat;
+    background-size: 70vw;
+    height: 100vh;
+
+    @include medium {
+      background-position: bottom left -55vh;
+      background-size: 90vw;
+    }
+  }
+
+  &.header--form-page {
+    background-image: url(../images/header-form-bg.jpg);
+    background-position: top left -500px;
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    height: 100vh;
+  }
+
+  .slogan {
+    height: calc(100% - 141px);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    &--item {
+      width: 100%;
+
+      @include medium {
+        width: 75%;
+      }
+      
+      @include large {
+        width: 60%;
+      }
+
+
+      h1 {
+        text-align: center;
+        font-size: 3.5rem;
+        line-height: 5rem;
+        @include openSans(300);
+        @include headerDecoration();
+      }
+    }
+
+    &--buttons {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      margin-top: 80px;
+
+      li {
+        display: flex; 
+        width: 100%;
+        justify-content: center;
+
+        .btn {
+          max-width: 320px;
+        }
+
+        padding-bottom: 0;
+
+        &:nth-child(1) {
+          padding-right: 25px;
+          justify-content: flex-end;
+        }
+        &:nth-child(2) {
+          padding-left: 25px;
+          justify-content: flex-start;
+        }
+      }
+    }
+
+    &--steps {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 40px;
+
+      &-title {
+        text-align: center;
+        font-size: 3.5rem;
+        line-height: 5rem;
+        @include openSans(300);
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        margin-top: 60px;
+        $box-size: 125px;
+
+        li {
+          border: 1px solid $main-color;
+          transform: rotate(45deg);
+          width: $box-size;
+          height: $box-size;
+          margin: 0 14px;
+
+          > div {
+            transform: rotate(-45deg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: $box-size;
+            height: $box-size;
+            @include openSans(300);
+          }
+
+          em { 
+            font-size: 2.5rem;
+            font-style: normal;
+          }
+
+          span {
+            text-align: center;
+            font-size: 2rem;
+            margin-top: 15px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  color: $main-color;
+  @include openSans();
+}
+
+a {
+  text-decoration: none;
+  color: $main-color;
+}
+
+h2 {
+  text-align: center;
+  font-size: 3.5rem;
+  @include headerDecoration();
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 15px;
+
+  @each $container in $containers {
+    &--#{$container} {
+      width: $container + vw;
+    }
+  }
+}
+
+.uppercase {
+  text-transform: uppercase;
+}

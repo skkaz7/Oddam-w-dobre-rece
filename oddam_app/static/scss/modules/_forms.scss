@@ -1,0 +1,244 @@
+form {
+  display: flex;
+  flex-wrap: wrap;
+
+  .form-group {
+    width: 100%;
+    padding: 0 15px;
+    margin-bottom: 20px;
+
+    input:not([type="checkbox"]):not([type="radio"]),
+    textarea {
+      border: 1px solid $main-color;
+      background: transparent;
+      padding: 4px 14px;
+      max-width: 200px;
+      width: 100%;
+      resize: none;
+      font-size: 1.8rem;
+    }
+
+    textarea {
+      max-width: 400px;
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    &--50 {
+      width: 50%;
+    }
+
+    &--buttons {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &--inline {
+      label {
+        font-size: 1.8rem;
+        @include openSans(300);
+
+        input {
+          margin-left: 15px;
+        }
+      }
+    }
+
+    &--checkbox {
+      @include openSans(300);
+      font-size: 1.8rem;
+
+      label {
+        display: flex;
+        align-items: center;
+      }
+
+      input {
+        position: absolute;
+        opacity: 0;
+        display: none;
+
+        &:checked {
+          + .checkbox {
+            background-color: $accent-color;
+          }
+        }
+      }
+
+      .checkbox {
+        padding: 14px;
+        border: 1px solid $main-color;
+        display: block;
+        position: relative;
+        @include transition(background);
+        cursor: pointer;
+
+        &:not(:empty) {
+          padding: 6px 10px;
+        }
+
+        &.radio {
+          border-radius: 50%;
+        }
+      }
+
+      .description {
+        margin-left: 30px;
+
+        .title {
+          @include merri(300);
+          font-size: 2rem;
+          margin-bottom: 5px;
+        }
+
+        .subtitle {
+          @include merri(300, light);
+          font-size: 1.2rem;
+        }
+      }
+    }
+
+    &--dropdown {
+      .dropdown {
+        @include openSans(300);
+        max-width: 200px;
+        min-height: 38px;
+        position: relative;
+
+        &.selecting {
+          & > div {
+            display: none;
+          }
+
+          ul {
+            display: block;
+          }
+        }
+
+        li,
+        > div {
+          border: 1px solid $main-color;
+          padding: 8px 10px;
+          font-size: 1.8rem;
+          cursor: pointer;
+        }
+
+        input {
+          display: none;
+          opacity: 0;
+          position: absolute;
+        }
+
+        &:after {
+          content: "";
+          position: absolute;
+          right: 10px;
+          top: 15px;
+          width: 0;
+          height: 0;
+          border-left: 10px solid transparent;
+          border-right: 10px solid transparent;
+          border-top: 10px solid $main-color;
+          cursor: pointer;
+          z-index: 2;
+        }
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        display: none;
+        position: absolute;
+        z-index: 1;
+        background-color: #fff;
+
+        li {
+          &:not(:first-of-type) {
+            margin: 10px 0;
+          }
+
+          &:last-of-type {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .form-section {
+    h4 {
+      @include openSans(600);
+      font-size: 1.8rem;
+    }
+
+    &--checkboxes {
+      max-width: 500px;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+
+      > div {
+        width: auto;
+      }
+    }
+
+    &--columns {
+      display: flex;
+      flex-wrap: wrap;
+
+      > div {
+        padding-right: 20px;
+        flex-grow: 1;
+
+        &:last-of-type {
+          padding-right: 0;
+        }
+      }
+
+      .form-group {
+        label {
+          width: 100%;
+          display: block;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          textarea, input {
+            margin-left: 20px;
+            max-width: 200px;
+          }
+        }
+      }
+    }
+  }
+
+  &.form--contact {
+    input:not([type="checkbox"]):not([type="radio"]),
+    textarea {
+      padding: 8px 12px;
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid $main-color;
+      background: transparent;
+      resize: none;
+      font-size: 1.4rem;
+      outline: none;
+      @include transition(border);
+      color: $main-color;
+      max-width: none;
+
+      &:focus {
+        border-bottom: 3px solid $accent-color;
+      }
+
+      &::placeholder {
+        @include openSans();
+        color: $main-color;
+      }
+    }
+  }
+}

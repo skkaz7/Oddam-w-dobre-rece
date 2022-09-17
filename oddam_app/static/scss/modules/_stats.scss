@@ -1,0 +1,30 @@
+.stats {
+  background-image: url(../images/stats-bg.jpg);
+
+  .container {
+    display: flex;
+    padding: 50px;
+  }
+
+  &--item {
+    text-align: center;
+    padding: 0 2vw;
+
+    em {
+      @include openSans(300);
+      font-size: 5.5rem;
+      font-style: normal;
+    }
+
+    h3 {
+      font-size: 1.8rem;
+      text-transform: uppercase;
+      margin: 2em 0;
+    }
+
+    p {
+      @include merri(300);
+      font-size: 1.6rem;
+    }
+  }
+}

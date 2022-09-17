@@ -1,0 +1,106 @@
+.help {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @include container(990px, 60px auto);
+
+  &--buttons {
+    padding: 0;
+    margin: 20px 0;
+    list-style: none;
+    display: flex;
+
+    li {
+      margin: 0 10px;
+    }
+  }
+
+  &--slides {
+    width: 100%;
+    margin-top: 30px;
+    display: none;
+
+    &.active {
+      display: block;
+    }
+
+    > p {
+      margin: 0 auto 30px;
+      max-width: 630px;
+      width: 100%;
+      font-size: 1.8rem;
+      text-align: center;
+      line-height: 2em;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    &-items {
+
+      li {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-bottom: 35px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+
+      .col {
+        width: 100%;
+
+        &:last-child {
+          text-align: right;
+        }
+
+        &:after {
+          content: "";
+          width: 70%;
+          height: 1px;
+          display: block;
+          position: relative;
+          margin-top: 25px;
+          background-color: lighten($main-color, 50%);
+        }
+
+        &:last-child {
+          &:after {
+            float: right;
+          }
+        }
+
+        .title {
+          @include merri(300);
+          font-size: 2rem;
+          margin-bottom: 5px;
+        }
+
+        .subtitle {
+          @include merri(300, light);
+          font-size: 1.2rem;
+        }
+
+        .text {
+          @include merri(300);
+          font-size: 1.2rem;
+          margin-top: 20px;
+        }
+      }
+    }
+
+    &-pagination {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+
+      li {
+        margin: 0 8px;
+      }
+    }
+  }
+}

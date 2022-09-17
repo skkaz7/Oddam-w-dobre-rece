@@ -1,0 +1,44 @@
+.btn {
+  display: inline-block;
+  font-size: 1.6rem;
+  padding: 1em 1.666em;
+  border: 1px solid $main-color;
+  text-align: center;
+  @include transition(border-color);
+  background: transparent;
+  cursor: pointer;
+
+
+  &:hover {
+    border-color: $accent-color;
+  }
+
+  &--large {
+    font-size: 3.6rem;
+    line-height: 1.35em;
+    text-transform: uppercase;
+    padding: 0.5em 1.666em;
+    @include openSans(300);
+  }
+
+  &--small {
+    font-size: 1.3rem;
+    padding: 0.5em 0.6em;
+  }
+
+  &--without-border {
+    border: 1px solid transparent;
+
+    &:hover{
+      border: 1px solid $main-color;
+    }
+  }
+
+  &--highlighted {
+    border: 1px solid $accent-color;
+  }
+
+  &.active {
+    border: 1px solid $main-color;
+  }
+}
