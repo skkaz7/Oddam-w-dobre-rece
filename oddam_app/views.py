@@ -1,12 +1,18 @@
+from django.db.models import Count, Sum
 from django.shortcuts import render
 from django.views import View
+
+from oddam_app.models import Donation, Institution
 
 
 # Create your views here.
 
 class LandingPage(View):
     def get(self, request):
-        return render(request, 'base.html')
+        institutions_counter = Donation.objects.distinct('institution_id').count()
+        bags_counter = Donation.objects.aggregate(Sum('quantity'))
+        return render(request, 'base.html', {'institutions_counter': institutions_counter,
+                                             'bags_counter': bags_counter})
 
 
 class AddDonation(View):
