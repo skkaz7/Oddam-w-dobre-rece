@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% load static %}
+
+
+    <header>
+        {% include 'nav-bar.html' %}
+    </header>
+
+    <section class="login-page">
+        <h2>Załóż konto</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="text" name="name" placeholder="Imię" value="{{ name }}"/>
+            </div>
+            <div class="form-group">
+                <input type="text" name="surname" placeholder="Nazwisko" value="{{ surname }}"/>
+            </div>
+            <div class="form-group">
+                <input type="email" name="email" placeholder="Email" value="{{ email }}"/>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" placeholder="Hasło"/>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password2" placeholder="Powtórz hasło"/>
+            </div>
+            <h1>{{ message }}</h1>
+            <div class="form-group form-group--buttons">
+                <a href="{% url 'login' %}" class="btn btn--without-border">Zaloguj się</a>
+                <button class="btn" type="submit">Załóż konto</button>
+            </div>
+        </form>
+    </section>
+
+{% endblock %}

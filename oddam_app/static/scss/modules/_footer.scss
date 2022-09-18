@@ -1,0 +1,63 @@
+footer {
+  min-height: 80vh;
+  background-image: url(../images/footer-bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  position: relative;
+
+  .contact {
+    max-width: 580px;
+    width: 100%;
+    padding-right: 30px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    h3 {
+      padding: 0 15px;
+      font-size: 1.4rem;
+      text-transform: uppercase;
+    }
+    
+
+    form {
+      margin-top: 15px;
+      justify-content: center;
+
+      [type="submit"]{
+        margin-top: 35px;
+      }
+    }
+  }
+
+  .bottom-line {
+    align-self: center;
+    display: flex;
+    margin-bottom: 12px;
+
+    &--copy {
+      @include merri();
+      font-size: 1.2rem;
+    }
+
+    &--icons {
+      position: absolute;
+      right: 10vw;
+      bottom: 20px;
+
+      a {
+        img {
+          width: 20px;
+          height: 20px;
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+}

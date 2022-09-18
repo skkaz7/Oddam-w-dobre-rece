@@ -1,0 +1,85 @@
+header {
+  position: relative;
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      font-size: 1.8rem;
+
+      &.nav--actions {
+        font-size: 1.4rem;
+        color: #737373;
+        margin: 30px 0 8px;
+
+        .logged-user {
+          padding-right: 30px;
+          position: relative;
+          cursor: pointer;
+
+          &:after {
+            content: "";
+            width: 15px;
+            height: 15px;
+            display: block;
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-image: url(../images/icon-gear.png);
+            background-size: cover;
+          }
+
+          ul {
+            display: none;
+            position: absolute;
+            flex-direction: column;
+            text-align: right;
+            background-color: #fff;
+            padding: 12px 0 0;
+            font-size: 1.4rem;
+            width: 120px;
+            right: 0;
+
+            li {
+              border-left: 1px solid $main-color;
+              border-right: 1px solid $main-color;
+              
+              &:first-of-type {
+                border-top: 1px solid $main-color;
+              }
+  
+              &:last-of-type {
+                border-bottom: 1px solid $main-color;
+              }
+            }
+
+            a {
+              display: inline-block;
+              padding: 6px;
+            }
+          }
+
+          &:hover {
+            ul {
+              display: block;
+            }
+          }
+        }
+      }
+
+      li {
+        padding: 0 5px;
+
+        &:last-of-type {
+          padding-right: 0;
+        }
+      }
+    }
+  }
+}
