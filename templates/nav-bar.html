@@ -1,8 +1,22 @@
 <nav class="container container--70">
-    <ul class="nav--actions">
-        <li><a href="{% url 'login' %}" class="btn btn--small btn--without-border">Zaloguj</a></li>
-        <li><a href="{% url 'register' %}" class="btn btn--small btn--highlighted">Załóż konto</a></li>
-    </ul>
+    {% if not user.is_authenticated %}
+        <ul class="nav--actions">
+            <li><a href="{% url 'login' %}" class="btn btn--small btn--without-border">Zaloguj</a></li>
+            <li><a href="{% url 'register' %}" class="btn btn--small btn--highlighted">Załóż konto</a></li>
+        </ul>
+    {% endif %}
+    {% if user.is_authenticated %}
+        <ul class="nav--actions">
+            <li class="logged-user">
+                Witaj {{ user.first_name }}
+                <ul class="dropdown">
+                    <li><a href="#">Profil</a></li>
+                    <li><a href="#">Ustawienia</a></li>
+                    <li><a href="{% url 'logout' %}">Wyloguj</a></li>
+                </ul>
+            </li>
+        </ul>
+    {% endif %}
 
     <ul>
         <li><a href="{% url 'base' %}" class="btn btn--without-border active">Start</a></li>

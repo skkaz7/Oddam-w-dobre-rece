@@ -1,3 +1,4 @@
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.db.models import Count, Sum
 from django.shortcuts import render, redirect
@@ -32,6 +33,22 @@ class Login(View):
     def get(self, request):
         return render(request, 'login.html')
 
+    def post(self, request):
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        user = authenticate(request, username=email, password=password)
+        if user is not None:
+            login(request, user)
+            url = request.GET.get('next', reverse('base'))
+            return redirect(url)
+        return render(request, 'register.html', {'message2': "Podany użytkownik nie istnieje. Załóż konto."})
+
+
+class Logout(View):
+    def get(self, request):
+        logout(request)
+        return redirect(reverse('base'))
+
 
 class Register(View):
     def get(self, request):
@@ -48,4 +65,5 @@ class Register(View):
             return redirect(reverse('login'))
         else:
             return render(request, 'register.html',
-                          {'name': name, 'surname': surname, 'email': email, 'message': "Nie uzupełniono wszystkich pół lub hasła nie są identyczne!"})
+                          {'name': name, 'surname': surname, 'email': email,
+                           'message': "Nie uzupełniono wszystkich pól lub hasła nie są identyczne!"})

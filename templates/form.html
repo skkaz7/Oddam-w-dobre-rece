@@ -4,27 +4,8 @@
 
 
     <header class="header--form-page">
-        <nav class="container container--70">
-            <ul class="nav--actions">
-                <li class="logged-user">
-                    Witaj Agata
-                    <ul class="dropdown">
-                        <li><a href="#">Profil</a></li>
-                        <li><a href="#">Ustawienia</a></li>
-                        <li><a href="#">Wyloguj</a></li>
-                    </ul>
-                </li>
-            </ul>
 
-            <ul>
-                <li><a href="{% url 'base' %}" class="btn btn--without-border active">Start</a></li>
-                <li><a href="{% url 'base' %}#steps" class="btn btn--without-border">O co chodzi?</a></li>
-                <li><a href="{% url 'base' %}#about-us" class="btn btn--without-border">O nas</a></li>
-                <li><a href="{% url 'base' %}#help" class="btn btn--without-border">Fundacje i organizacje</a></li>
-                <li><a href="{% url 'form' %}" class="btn btn--without-border">Przekaż dary</a></li>
-                <li><a href="#contact" class="btn btn--without-border">Kontakt</a></li>
-            </ul>
-        </nav>
+        {% include 'nav-bar.html' %}
 
         <div class="slogan container container--90">
             <div class="slogan--item">
