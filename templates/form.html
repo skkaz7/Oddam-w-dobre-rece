@@ -59,64 +59,31 @@
             <div class="form--steps-counter">Krok <span>1</span>/5</div>
 
             <form action="form-confirmation.html" method="post">
+                {% csrf_token %}
+
                 <!-- STEP 1: class .active is switching steps -->
-                <div data-step="1" class="active">
-                    <h3>Zaznacz co chcesz oddać:</h3>
+                {% if not user.is_authenticated %}
+                    <h3><a href="{% url 'login' %}">Zaloguj się, aby uzyskać dostęp do formularza!</a></h3>
+                {% endif %}
+                {% if user.is_authenticated %}
+                    <div data-step="1" class="active">
+                        <h3>Zaznacz co chcesz oddać:</h3>
 
-                    <div class="form-group form-group--checkbox">
-                        <label>
-                            <input
-                                    type="checkbox"
-                                    name="categories"
-                                    value="clothes-to-use"
-                            />
-                            <span class="checkbox"></span>
-                            <span class="description"
-                            >ubrania, które nadają się do ponownego użycia</span
-                            >
-                        </label>
-                    </div>
+                        {% for cat in categories %}
+                            <div class="form-group form-group--checkbox">
+                                <label>
+                                    <input type="checkbox" name="categories" value="{{ cat.id }}"/>
+                                    <span class="checkbox"></span>
+                                    <span class="description">{{ cat.name }}</span>
+                                </label>
+                            </div>
+                        {% endfor %}
 
-                    <div class="form-group form-group--checkbox">
-                        <label>
-                            <input
-                                    type="checkbox"
-                                    name="categories"
-                                    value="clothes-useless"
-                            />
-                            <span class="checkbox"></span>
-                            <span class="description">ubrania, do wyrzucenia</span>
-                        </label>
+                        <div class="form-group form-group--buttons">
+                            <button type="button" class="btn next-step">Dalej</button>
+                        </div>
                     </div>
-
-                    <div class="form-group form-group--checkbox">
-                        <label>
-                            <input type="checkbox" name="categories" value="toys"/>
-                            <span class="checkbox"></span>
-                            <span class="description">zabawki</span>
-                        </label>
-                    </div>
-
-                    <div class="form-group form-group--checkbox">
-                        <label>
-                            <input type="checkbox" name="categories" value="books"/>
-                            <span class="checkbox"></span>
-                            <span class="description">książki</span>
-                        </label>
-                    </div>
-
-                    <div class="form-group form-group--checkbox">
-                        <label>
-                            <input type="checkbox" name="categories" value="other"/>
-                            <span class="checkbox"></span>
-                            <span class="description">inne</span>
-                        </label>
-                    </div>
-
-                    <div class="form-group form-group--buttons">
-                        <button type="button" class="btn next-step">Dalej</button>
-                    </div>
-                </div>
+                {% endif %}
 
                 <!-- STEP 2 -->
                 <div data-step="2">
@@ -136,37 +103,22 @@
                 </div>
 
 
-                <!-- STEP 4 -->
+                <!-- STEP 3 -->
                 <div data-step="3">
                     <h3>Wybierz organizacje, której chcesz pomóc:</h3>
 
+                    {% for inst in institutions %}
                     <div class="form-group form-group--checkbox">
                         <label>
-                            <input type="radio" name="organization" value="old"/>
+                            <input type="radio" name="organization" value="{{ inst.id }}"/>
                             <span class="checkbox radio"></span>
                             <span class="description">
-                  <div class="title">Fundacja “Bez domu”</div>
-                  <div class="subtitle">
-                    Cel i misja: Pomoc dla osób nie posiadających miejsca
-                    zamieszkania
-                  </div>
-                </span>
+                              <div class="title">{{ inst.name }}</div>
+                              <div class="subtitle">Cel i misja: {{ inst.description }}</div>
+                            </span>
                         </label>
                     </div>
-
-                    <div class="form-group form-group--checkbox">
-                        <label>
-                            <input type="radio" name="organization" value="old"/>
-                            <span class="checkbox radio"></span>
-                            <span class="description">
-                  <div class="title">Fundacja “Dla dzieci"</div>
-                  <div class="subtitle">
-                    Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji
-                    życiowej.
-                  </div>
-                </span>
-                        </label>
-                    </div>
+                    {% endfor %}
 
                     <div class="form-group form-group--buttons">
                         <button type="button" class="btn prev-step">Wstecz</button>
