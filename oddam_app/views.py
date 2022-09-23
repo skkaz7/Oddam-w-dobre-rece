@@ -28,8 +28,16 @@ class AddDonation(View):
     def get(self, request):
         categories = Category.objects.all()
         institutions = Institution.objects.all()
-        return render(request, 'form.html', {'categories': categories,
-                                             'institutions': institutions})
+        return render(request, 'form.html', {'categories': categories, 'institutions': institutions})
+
+
+def get_inst_by_cat(request):
+    type_ids = request.GET.getlist('type_ids')
+    if type_ids is not None:
+        institutions = Institution.objects.filter(categories__in=type_ids).distinct()
+    else:
+        institutions = Institution.objects.all()
+    return render(request, "api_institutions.html", {'institutions': institutions})
 
 
 class Login(View):

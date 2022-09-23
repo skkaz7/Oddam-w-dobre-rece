@@ -72,7 +72,7 @@
                         {% for cat in categories %}
                             <div class="form-group form-group--checkbox">
                                 <label>
-                                    <input type="checkbox" name="categories" value="{{ cat.id }}"/>
+                                    <input type="checkbox" class="checkboxy"  name="categories" value="{{ cat.id }}" data-id="{{ cat.name }}"/>
                                     <span class="checkbox"></span>
                                     <span class="description">{{ cat.name }}</span>
                                 </label>
@@ -104,21 +104,22 @@
 
 
                 <!-- STEP 3 -->
-                <div data-step="3">
-                    <h3>Wybierz organizacje, której chcesz pomóc:</h3>
 
-                    {% for inst in institutions %}
-                    <div class="form-group form-group--checkbox">
-                        <label>
-                            <input type="radio" name="organization" value="{{ inst.id }}"/>
-                            <span class="checkbox radio"></span>
-                            <span class="description">
-                              <div class="title">{{ inst.name }}</div>
-                              <div class="subtitle">Cel i misja: {{ inst.description }}</div>
-                            </span>
-                        </label>
-                    </div>
-                    {% endfor %}
+                <div data-step="3" id="institutions">
+                    <h3>Wybierz organizacje, której chcesz pomóc:</h3>
+                    <div id="inst"></div>
+                    {#                    {% for inst in institutions %}#}
+                    {#                        <div class="form-group form-group--checkbox">#}
+                    {#                            <label>#}
+                    {#                                <input type="radio" name="organization" value="{{ inst.id }}"/>#}
+                    {#                                <span class="checkbox radio"></span>#}
+                    {#                                <span class="description">#}
+                    {#                                    <div class="title">{{ inst.name }}</div>#}
+                    {#                                    <div class="subtitle">Cel i misja: {{ inst.description }}</div>#}
+                    {#                                </span>#}
+                    {#                            </label>#}
+                    {#                        </div>#}
+                    {#                    {% endfor %}#}
 
                     <div class="form-group form-group--buttons">
                         <button type="button" class="btn prev-step">Wstecz</button>
@@ -126,7 +127,7 @@
                     </div>
                 </div>
 
-                <!-- STEP 5 -->
+                <!-- STEP 4 -->
                 <div data-step="4">
                     <h3>Podaj adres oraz termin odbioru rzecz przez kuriera:</h3>
 
@@ -149,7 +150,7 @@
 
                             <div class="form-group form-group--inline">
                                 <label>
-                                    Numer telefonu <input type="phone" name="phone"/>
+                                    Numer telefonu <input type="number" name="phone"/>
                                 </label>
                             </div>
                         </div>
@@ -172,13 +173,14 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="form-group form-group--buttons">
                         <button type="button" class="btn prev-step">Wstecz</button>
                         <button type="button" class="btn next-step">Dalej</button>
                     </div>
                 </div>
 
-                <!-- STEP 6 -->
+                <!-- STEP 5 -->
                 <div data-step="5">
                     <h3>Podsumowanie Twojej darowizny</h3>
 
@@ -188,16 +190,12 @@
                             <ul>
                                 <li>
                                     <span class="icon icon-bag"></span>
-                                    <span class="summary--text"
-                                    >4 worki ubrań w dobrym stanie dla dzieci</span
-                                    >
+                                    <span class="summary--text" id="bags"></span>
                                 </li>
 
                                 <li>
                                     <span class="icon icon-hand"></span>
-                                    <span class="summary--text"
-                                    >Dla fundacji "Mam marzenie" w Warszawie</span
-                                    >
+                                    <span class="summary--text" id="insts"></span>
                                 </li>
                             </ul>
                         </div>
@@ -232,5 +230,8 @@
             </form>
         </div>
     </section>
+
+    <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'js/step3.js' %}"></script>
 
 {% endblock %}
