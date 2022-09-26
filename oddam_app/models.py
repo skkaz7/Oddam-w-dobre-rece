@@ -13,12 +13,18 @@ TYPE = (
 class Category(models.Model):
     name = models.CharField(max_length=64)
 
+    def __str__(self):
+        return self.name
+
 
 class Institution(models.Model):
     name = models.CharField(max_length=64)
     description = models.TextField()
     type = models.IntegerField(choices=TYPE, default=TYPE[0])
     categories = models.ManyToManyField(Category)
+
+    # def __str__(self):
+    #     return str({self.name})
 
 
 class Donation(models.Model):
@@ -32,4 +38,4 @@ class Donation(models.Model):
     pick_up_date = models.DateField()
     pick_up_time = models.TimeField()
     pick_up_comment = models.TextField()
-    user = models.ForeignKey(User, null=True, default='null', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, null=True, default=None, on_delete=models.CASCADE)
