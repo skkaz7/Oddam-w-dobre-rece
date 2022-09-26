@@ -203,7 +203,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     this.updateForm();
 
                     if (this.currentStep === 5) {
-                        const address = document.querySelector('input[name="address"]').value
                         const bags = document.querySelector('input[name="bags"]').value
                         const bags_summary = document.getElementById('bags')
                         const categories = []
@@ -222,6 +221,38 @@ document.addEventListener("DOMContentLoaded", function () {
                         const inst = institution_checked.getAttribute('data-id')
                         const insts_summary = document.getElementById('insts')
                         insts_summary.innerText = 'Dla ' + inst
+
+                        const address = document.querySelector('input[name="address"]').value
+                        const address_summary = document.getElementById('address')
+                        address_summary.innerText = address
+
+                        const city = document.querySelector('input[name="city"]').value
+                        const city_summary = document.getElementById('city')
+                        city_summary.innerText = city
+
+                        const postcode = document.querySelector('input[name="postcode"]').value
+                        const postcode_summary = document.getElementById('postcode')
+                        postcode_summary.innerText = postcode
+
+                        const phone = document.querySelector('input[name="phone"]').value
+                        const phone_summary = document.getElementById('phone')
+                        phone_summary.innerText = phone
+
+                        const data = document.querySelector('input[name="data"]').value
+                        const data_summary = document.getElementById('data')
+                        data_summary.innerText = data
+
+                        const time = document.querySelector('input[name="time"]').value
+                        const time_summary = document.getElementById('time')
+                        time_summary.innerText = time
+
+                        const more_info = document.querySelector('textarea[name="more_info"]').value
+                        const more_info_summary = document.getElementById('more_info')
+                        if (more_info !== "") {
+                            more_info_summary.innerText = more_info
+                        } else {
+                            more_info_summary.innerText = "Brak uwag"
+                        }
 
                     }
                 });
@@ -269,7 +300,7 @@ document.addEventListener("DOMContentLoaded", function () {
          * TODO: validation, send data to server
          */
         submit(e) {
-            e.preventDefault();
+            // e.preventDefault();
             this.currentStep++;
             this.updateForm();
         }

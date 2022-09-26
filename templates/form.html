@@ -58,7 +58,7 @@
         <div class="form--steps-container">
             <div class="form--steps-counter">Krok <span>1</span>/5</div>
 
-            <form action="form-confirmation.html" method="post">
+            <form  method="post">
                 {% csrf_token %}
 
                 <!-- STEP 1: class .active is switching steps -->
@@ -204,19 +204,19 @@
                             <div class="form-section--column">
                                 <h4>Adres odbioru:</h4>
                                 <ul>
-                                    <li>Prosta 51</li>
-                                    <li>Warszawa</li>
-                                    <li>99-098</li>
-                                    <li>123 456 789</li>
+                                    <li id="address"></li>
+                                    <li id="city"></li>
+                                    <li id="postcode"></li>
+                                    <li id="phone"></li>
                                 </ul>
                             </div>
 
                             <div class="form-section--column">
                                 <h4>Termin odbioru:</h4>
                                 <ul>
-                                    <li>13/12/2018</li>
-                                    <li>15:40</li>
-                                    <li>Brak uwag</li>
+                                    <li id="data"></li>
+                                    <li id="time"></li>
+                                    <li id="more_info"></li>
                                 </ul>
                             </div>
                         </div>
