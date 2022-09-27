@@ -103,3 +103,9 @@ class Register(View):
             return render(request, 'register.html',
                           {'name': name, 'surname': surname, 'email': email,
                            'message': "Nie uzupełniono wszystkich pól lub hasła nie są identyczne!"})
+
+
+class UserDetails(View):
+    def get(self, request):
+        user = request.user
+        return render(request, 'user-details.html', {'user': user})

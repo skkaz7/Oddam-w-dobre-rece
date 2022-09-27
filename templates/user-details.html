@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% load static %}
+
+    <header class="header--form-page">
+
+        {% include 'nav-bar.html' %}
+
+        <div class="slogan container container--90">
+            <h2>
+                Imię: {{ user.first_name }}<br>
+                Nazwisko: {{ user.last_name }}<br>
+                E-mail: {{ user.email }}
+            </h2>
+        </div>
+    </header>
+
+{% endblock %}
