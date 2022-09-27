@@ -108,4 +108,12 @@ class Register(View):
 class UserDetails(View):
     def get(self, request):
         user = request.user
-        return render(request, 'user-details.html', {'user': user})
+        donations = Donation.objects.filter(user_id=user.id)
+        return render(request, 'user-details.html', {'user': user, 'donations': donations})
+
+    def post(self, request):
+        confirm = request.POST.get('confirm')
+        donation = Donation.objects.get(id=confirm)
+        donation.is_taken = True
+        donation.save()
+        return redirect(reverse('user-details'))

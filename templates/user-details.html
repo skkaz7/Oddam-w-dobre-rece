@@ -10,9 +10,34 @@
             <h2>
                 Imię: {{ user.first_name }}<br>
                 Nazwisko: {{ user.last_name }}<br>
-                E-mail: {{ user.email }}
+                E-mail: {{ user.email }}<br>
+
+                <ul class="help--slides-items" style="text-align: left" id="ul1">
+                    {% for don in donations|dictsort:'is_taken' %}
+                        <li id="li1">
+                            <div class="col">
+                                <div class="title" style="font-size: small">{{ don.quantity }}{% if don.quantity == 1 %} worek {% elif don.quantity < 5 %} worki {% else %} worków {% endif %} dla: {{ don.institution }}</div>
+                                <div class="subtitle" id="collected">{{ don.pick_up_date.isoformat }} - {{ don.pick_up_time.isoformat }} {% if don.is_taken %} - odebrany{% endif %}</div>
+                            </div>
+
+                            <div class="col">
+                                <div class="text">{% for cat in don.categories.all %} {{ cat.name }}, {% endfor %}</div>
+                            </div>
+                            <div>
+                                {% if not don.is_taken %}
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" value="{{ don.id }}" name="confirm">
+                                <button type="submit" class="btn" id="btn1" style="font-size: x-small">Potwierdź odbiór</button>
+                                </form>
+                                {% endif %}
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+
             </h2>
         </div>
     </header>
-
+<script src="{% static 'js/donation-list.js' %}"></script>
 {% endblock %}

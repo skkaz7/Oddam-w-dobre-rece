@@ -210,9 +210,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         kategorie.forEach(id => {
                             categories.push(' ' + id.getAttribute('data-id'))
                         })
-                        if (bags === '1') {
+                        if (parseInt(bags) === 1) {
                             bags_summary.innerText = bags + ' worek z: ' + categories;
-                        } else if (bags < '5') {
+                        } else if (parseInt(bags) < 5) {
                             bags_summary.innerText = bags + ' worki z: ' + categories;
                         } else {
                             bags_summary.innerText = bags + ' worków z: ' + categories;
