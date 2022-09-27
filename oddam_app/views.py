@@ -32,10 +32,9 @@ class AddDonation(View):
 
     def post(self, request):
         categories = request.POST.getlist('categories')
-        print(categories)
         bags = request.POST.get('bags')
-        organization = request.POST.get('organization')
-        institution = Institution.objects.get(pk=organization)
+        organization_id = request.POST.get('organization')
+        institution = Institution.objects.get(pk=organization_id)
         address = request.POST.get('address')
         city = request.POST.get('city')
         postcode = request.POST.get('postcode')
