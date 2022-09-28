@@ -117,3 +117,37 @@ class UserDetails(View):
         donation.is_taken = True
         donation.save()
         return redirect(reverse('user-details'))
+
+
+class UserUpdate(View):
+    def get(self, request):
+        user = request.user
+        return render(request, 'user-update.html', {'user': user})
+
+    def post(self, request):
+        user = request.user
+        if user.check_password(request.POST.get('password')):
+            user.first_name = request.POST.get('name')
+            user.last_name = request.POST.get('surname')
+            user.email = request.POST.get('email')
+            user.username = request.POST.get('email')
+            user.save()
+            return redirect(reverse('user-details'))
+        return render(request, 'user-update.html', {'user': user, 'message': "Wprowadzono niepoprawne hasło!"})
+
+
+class ChangePassword(View):
+    def get(self, request):
+        return render(request, 'change-password.html')
+
+    def post(self, request):
+        user = request.user
+        if user.check_password(request.POST.get('old-password')):
+            new_password = request.POST.get('new-password')
+            new_password2 = request.POST.get('new-password2')
+            if new_password == new_password2:
+                user.set_password(new_password)
+                user.save()
+                return redirect(reverse('login'))
+            return render(request, 'change-password.html', {'message2': "Nowe hasła nie są takie same!"})
+        return render(request, 'change-password.html', {'message': "Stare hasło jest błędne!"})
