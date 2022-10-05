@@ -4,7 +4,7 @@ from django.db.models import Sum
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
-
+from django.core.paginator import Paginator
 from oddam_app.models import Donation, Institution, Category
 
 
@@ -17,9 +17,12 @@ class LandingPage(View):
         local_collections = Institution.objects.filter(type=3)
         institutions_counter = Donation.objects.distinct('institution_id').count()
         bags_counter = Donation.objects.aggregate(Sum('quantity'))
+        funds_paginator = Paginator(funds, 3)
+        page = request.GET.get('page')
+        p_funds = funds_paginator.get_page(page)
         return render(request, 'index.html', {'institutions_counter': institutions_counter,
                                               'bags_counter': bags_counter,
-                                              'funds': funds,
+                                              'funds': p_funds,
                                               'ngos': ngos,
                                               'local_collections': local_collections})
 
