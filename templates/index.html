@@ -105,13 +105,16 @@
                     </li>
                 {% endfor %}
             </ul>
-            <!-- Pagination
+
             <ul class="help--slides-pagination">
-              <li><a href="#" class="btn btn--small btn--without-border active" data-page="1">1</a></li>
-              <li><a href="#" class="btn btn--small btn--without-border" data-page="2">2</a></li>
-              <li><a href="#" class="btn btn--small btn--without-border" data-page="3">3</a></li>
+                {% for page in funds.paginator.page_range %}
+                    <li><a href="?page={{ page }}#help" class="btn btn--small btn--without-border"
+                           data-page="{{ page }}">{{ page }}</a></li>
+                    {#                    <li><a href="#" class="btn btn--small btn--without-border" data-page="2">2</a></li>#}
+                    {#                    <li><a href="#" class="btn btn--small btn--without-border" data-page="3">3</a></li>#}
+                {% endfor %}
             </ul>
-            -->
+            Page {{ funds.number }} of {{ funds.paginator.num_pages }}
         </div>
 
 
@@ -137,46 +140,45 @@
                 {% endfor %}
             </ul>
 
-            <!-- Pagination
-            <ul class="help--slides-pagination">
-              <li><a href="#" class="btn btn--small btn--without-border active" data-page="1">1</a></li>
-              <li><a href="#" class="btn btn--small btn--without-border" data-page="2">2</a></li>
-              <li><a href="#" class="btn btn--small btn--without-border" data-page="3">3</a></li>
-              <li><a href="#" class="btn btn--small btn--without-border" data-page="4">4</a></li>
-              <li><a href="#" class="btn btn--small btn--without-border" data-page="5">5</a></li>
-            </ul>
-            -->
-        </div>
+{#                        <ul class="help--slides-pagination">#}
+{#                            {% for page in ngos.paginator.page_range %}#}
+{#                                <li><a href="?page={{ page }}#help" class="btn btn--small btn--without-border" data-page="{{ page }}">{{ page }}</a></li>#}
+{#                            {% endfor %}#}
+{#                        </ul>#}
+{#                        Page {{ ngos.number }} of {{ ngos.paginator.num_pages }}#}
 
-        <!-- SLIDE 3 -->
-        <div class="help--slides" data-id="3">
-            <p>W naszej bazie znajdziesz listę zweryfikowanych Lokalnych zbiórek,<br> z którymi współpracujemy. Możesz
-                sprawdzić czym się zajmują, komu pomagają i czego potrzebują.</p>
-            <ul class="help--slides-items">
-                {% for local_collection in local_collections %}
-                    <li>
-                        <div class="col">
-                            <div class="title">{{ local_collection.name }}</div>
-                            <div class="subtitle">{{ local_collection.description }}</div>
-                        </div>
+                    </div>
 
-                        <div class="col">
-                            <div class="text">
-                                {% for cat in local_collection.categories.all %}
-                                    {{ cat.name }},
-                                {% endfor %}</div>
-                        </div>
-                    </li>
-                {% endfor %}
-            </ul>
+            <!-- SLIDE 3 -->
+            <div class="help--slides" data-id="3">
+                <p>W naszej bazie znajdziesz listę zweryfikowanych Lokalnych zbiórek,<br> z którymi współpracujemy.
+                    Możesz
+                    sprawdzić czym się zajmują, komu pomagają i czego potrzebują.</p>
+                <ul class="help--slides-items">
+                    {% for local_collection in local_collections %}
+                        <li>
+                            <div class="col">
+                                <div class="title">{{ local_collection.name }}</div>
+                                <div class="subtitle">{{ local_collection.description }}</div>
+                            </div>
 
-            <!-- Pagination
-            <ul class="help--slides-pagination">
-              <li><a href="#" class="btn btn--small btn--without-border active" data-page="1">1</a></li>
-              <li><a href="#" class="btn btn--small btn--without-border" data-page="2">2</a></li>
-            </ul>
-            -->
-        </div>
+                            <div class="col">
+                                <div class="text">
+                                    {% for cat in local_collection.categories.all %}
+                                        {{ cat.name }},
+                                    {% endfor %}</div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+
+{#                <ul class="help--slides-pagination">#}
+{#                    <li><a href="#" class="btn btn--small btn--without-border active" data-page="1">1</a></li>#}
+{#                    <li><a href="#" class="btn btn--small btn--without-border" data-page="2">2</a></li>#}
+{#                </ul>#}
+
+            </div>
     </section>
 
 {% endblock %}
