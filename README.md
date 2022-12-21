@@ -1,6 +1,6 @@
 # Oddam-w-dobre-rece
 > ### The aim of the project was to create a place where everyone could give away unwanted items to trusted institutions.
-> Live demo [_here_](https://www.example.com). <!-- If you have the project hosted somewhere, include the link here. -->
+> <!-- Live demo [_here_](https://www.example.com).  If you have the project hosted somewhere, include the link here. -->
 
 ## Table of Contents
 * [General Info](#general-information)
